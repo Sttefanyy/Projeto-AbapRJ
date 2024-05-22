@@ -136,15 +136,21 @@
 
   .atalho1 {
     margin-top: 200px;
+    margin-bottom: 200px;
     display: flex;
     gap: 100px;
     justify-content: center;
   }
-
+  
   .atalho1>div>a {
     text-decoration: none;
   }
-
+  
+  .atalho1>div>a>img{
+    height: 120px;
+    width: 120px;
+  }
+  
   .atalho1>div>a>p {
     text-align: center;
     font-family: var(--font2);
@@ -152,7 +158,7 @@
     font-size: 2em;
     color: #375098;
   }
-
+  
   /*Sobre o projeto*/
 
   #sobreOProjeto {

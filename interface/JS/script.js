@@ -1,48 +1,74 @@
-let contador = 1;
+// Carrosel
+var radio = document.querySelector('.manual-btn')
+var cont = 1
 
-setInterval(function() {
-    document.getElementById('slide' + contador).checked = true;
-    contador++;
+document.getElementById('radio1').checked = true
 
-    if (counter > 5) {
-        contador = 1;
+setInterval(() => {
+    proximaImg()
+}, 5000)
+
+function proximaImg(){
+    cont++
+
+    if(cont > 4){
+        cont = 1
     }
-}, 3000);
 
-//js slider comeco
-const items1 = document.querySelectorAll('.slider1 .item');
-const itemCount1 = items1.length;
-let count1 = 0;
+    document.getElementById('radio' + cont).checked = true
+}
 
-const items2 = document.querySelectorAll('.slider2 .item');
-const itemCount2 = items1.length;
-let count2 = 0;
+//Sobre o projeto
+var botao = document.getElementById('read_button')
 
-//slider 1
-setInterval(function() {
-    items1[count1].classList.remove('active');
+botao.addEventListener('click', function(){
+    var card = document.querySelector('.sobreOProjeto')
+    var imagem = document.getElementById('iconeSeta')
+    var texto = document.getElementById('descritivo')
+    card.classList.toggle('active')
 
-    if (count1 < itemCount1 - 1) {
-        count1++;
+    if(imagem.src.includes('imagens/SetaParaBaixo.svg')){
+        imagem.src = 'imagens/SetaParaCima.svg'
+        imagem.alt = 'Seta para cima'
     } else {
-        count1 = 0;
+        imagem.src = 'imagens/SetaParaBaixo.svg'
+        imagem.alt = 'Seta para baixo'
     }
 
-    items1[count1].classList.add('active');
-}, 3000);
-//fim slider 1
-
-//slider 2
-setInterval(function() {
-    items2[count2].classList.remove('active');
-
-    if (count2 < itemCount2 - 1) {
-        count2++;
+    if(texto.textContent == 'Leia mais'){
+        texto.textContent = 'Leia menos'
     } else {
-        count2 = 0;
+        texto.textContent = 'Leia mais'
     }
+})
 
-    items2[count2].classList.add('active');
-}, 3000);
-//fim slider 2
 
+//Crianças
+var btn1 = document.getElementById('imgCriancaPQ1')
+var btn2 = document.getElementById('imgCriancaPQ2')
+var btn3 = document.getElementById('imgCriancaPQ3')
+var btn4 = document.getElementById('imgCriancaPQ4')
+
+function tracaImagem1(){
+    var imagemGrande = document.getElementById('imagemCriancaGrande')
+
+    imagemGrande.src = 'imagens/menu01.jpg'
+}
+
+function tracaImagem2(){
+    var imagemGrande = document.getElementById('imagemCriancaGrande')
+
+    imagemGrande.src = 'imagens/menu02.jpg'
+}
+
+function tracaImagem3(){
+    var imagemGrande = document.getElementById('imagemCriancaGrande')
+
+    imagemGrande.src = 'imagens/menu03.jpg'
+}
+
+function tracaImagem4(){
+    var imagemGrande = document.getElementById('imagemCriancaGrande')
+
+    imagemGrande.src = 'imagens/menu04.jpg'
+}

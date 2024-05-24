@@ -1,0 +1,529 @@
+@charset "utf-8";
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
+
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+
+:root {
+  --cor0: #ffffff;
+  --cor1: #2196F3;
+  --cor2: #f26430;
+  --cor3: #11457E;
+  --cor4: #040C17;
+
+  /*Fontes*/
+  --font1: "Roboto", sans-serif;
+  --font2: 'Inter', Arial, Helvetica, sans-serif;
+}
+
+* {
+  margin: 0px;
+  padding: 0px;
+  box-sizing: border-box;
+}
+
+header {
+  background-image: linear-gradient(to bottom, #D5E2FF, #93B4FF);
+  padding: 36px 92px;
+  display: flex;
+  text-align: justify;
+  justify-content: space-between;
+}
+
+header>a>img {
+  width: 124px;
+  height: 120px;
+}
+
+header>nav>ul {
+  padding: 40px;
+  display: flex;
+  gap: 40px;
+  list-style-type: none;
+}
+
+header>nav>ul>li>a {
+  text-decoration: none;
+  color: #375098;
+  font-family: var(--font1);
+  font-size: 2em;
+}
+
+header>nav>ul>li>a:hover {
+  color: #707ea9;
+}
+
+/*conteudo principal*/
+
+main{
+  margin: 100px 0px ;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  gap: 40px;
+}
+
+main>h2{
+  color: #2D4484;
+  text-align: center;
+  font-family: var(--font2);
+  font-size: 4em;
+  font-weight: 800;
+  margin-bottom: 20px;
+}
+
+#cards{
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 40px;
+  margin: 0 auto;
+}
+
+#card{
+  display: flex;
+  flex-direction: column;
+  background-color: #93B4FF;
+  border: 10px solid #3F5CB0;
+  border-radius: 50px;
+  padding: 0 40px;
+  width: auto;
+}
+
+#card>h2{
+  font-family: var(--font2);
+  color: #3F5CB0;
+  font-size: 28px;
+  text-align: center;
+  margin: 50px 0 25px;
+}
+
+#card>img{
+  width: 200px;
+  height: 200px;
+}
+
+#card>button{
+  justify-self: center;
+  margin: 25px 0 50px;
+  color: white;
+  font-size: 18px;
+  font-weight: 700;
+  padding: 18px 10px;
+  background-color: #405EB2;
+  border: 5px solid #375098;
+  border-radius: 50px;
+}
+
+#card>button:hover{
+  cursor: pointer;
+}
+
+#card>button:active{
+  background-color: #375098;
+}
+
+/*footer*/
+
+footer{
+    background-image: linear-gradient(to bottom, #D5E2FF, #93B4FF);
+    display: flex;
+    justify-content: center;
+    gap: 138px;
+  }
+  
+  #logoEDireitos{
+    padding: 100px 0;
+  }
+  
+  footer>div>img{
+    width: 326px;
+    height: 317px;
+    margin-bottom: 120px;
+  }
+  
+  #logoEDireitos>p{
+    font-family: var(--font2);
+    font-weight: 400;
+    font-family: #2D4484;
+  }
+  
+  #contatos{
+    padding: 100px 0;
+    text-align: center;
+  }
+  
+  #contatos>h2{
+    color: #2D4484;
+    font-family: var(--font2);
+    font-size: 2.25em;
+    font-weight: 700;
+  }
+  
+  #contatos>p{
+    margin: 40px 0;
+    font-weight: 400;
+  }
+  
+  #contatos>p>a{
+    font-family: var(--font2);
+    font-size: 2em;
+    color: #2D4484;
+    font-weight: 400;
+    text-decoration: none;
+  }
+  
+  .redesSociais{
+    display: flex;
+    gap: 16px;
+    justify-content: center;
+  }
+  
+  #quebra{
+    display: none;
+  }
+  
+  #infomPags{
+    padding: 100px 0;
+    text-align: center;
+  }
+  
+  #infomPags>h2{
+    color: #2D4484;
+    font-family: var(--font2);
+    font-size: 2.25em;
+    font-weight: 700;
+  }
+  
+  #infomPags>p{
+    margin: 40px 0;
+    font-weight: 400;
+  }
+  
+  #infomPags>p>a{
+    font-family: var(--font2);
+    font-size: 2em;
+    color: #2D4484;
+    font-weight: 400;
+    text-decoration: none;
+  }
+  
+  #direitos{
+    display: none;
+  }
+
+  #registro{
+    height: 800px;
+    background-image: linear-gradient(to bottom, #D5E2FF, #93B4FF);
+  }
+
+  #registro>h2{
+    color: #2D4484;
+    text-align: center;
+    font-family: var(--font2);
+    font-size: 4em;
+    font-weight: 800;
+    margin: 25px 0px 50px;
+  }
+
+  @media (max-width: 1060px){
+
+    header>nav>ul>li>a {
+      font-size: 1.2em;
+    }
+    
+    header>nav>ul {
+      padding: 40px 12px;
+      gap: auto;
+    }
+
+    /* main */
+
+    main>h2{
+      font-size: 3em; 
+    }
+
+    #cards{
+      grid-template-columns: 1fr 1fr 1fr;
+    }
+
+    #card{
+      display: flex;
+      flex-direction: column;
+      background-color: #93B4FF;
+      border: 10px solid #3F5CB0;
+      border-radius: 50px;
+      padding: 0 40px;
+      width: auto;
+    }
+    
+    #card>h2{
+      font-family: var(--font2);
+      color: #3F5CB0;
+      font-size: 18px;
+      text-align: center;
+      margin: 50px 0 25px;
+    }
+    
+    #card>img{
+      width: 100px;
+      height: 100px;
+    }
+    
+    #card>button{
+      justify-self: center;
+      margin: 25px 0 50px;
+      color: white;
+      font-size: 12px;
+      font-weight: 700;
+      padding: 18px 10px;
+      background-color: #405EB2;
+      border: 3px solid #375098;
+      border-radius: 50px;
+    }
+
+    /*Footer*/
+  footer{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 5px;
+    padding: 0 8px;
+  }
+  
+  #logoEDireitos{
+    padding: 50px 0px 25px 0px;
+    max-width: 33vw;
+    display: flex;
+    justify-content: center;
+  }
+
+  #logoEDireitos>p{
+    display: none;
+  }
+  
+  footer>div>img{
+    max-width: 90px;
+    max-height: 88px;
+    margin-bottom: 60px;
+    align-items: center;
+  }
+  
+  #contatos{
+    padding: 50px 0px 25px 0px;
+    text-align: center;
+    max-width: 33vw;
+  }
+  
+  #contatos>h2{
+    font-size: 1.125em;
+    max-width: auto;
+  }
+  
+  #contatos>p{
+    margin: 40px 0;
+    font-weight: 400;
+    max-width: 120px;
+  }
+  
+  #contatos>p>a{
+    font-size: 1em;
+    max-width: 50px;
+  }
+  
+  .redesSociais{
+    padding: 50px 0px 25px 0px;
+    display: flex;
+    gap: 16px;
+    justify-content: center;
+  }
+  
+  #infomPags{
+    padding: 50px 0px 25px 0px;
+    text-align: center;
+    max-width: 33vw;
+  }
+  
+  #infomPags>h2{
+    color: #2D4484;
+    font-family: var(--font2);
+    font-size: 1.125em;
+    font-weight: 700;
+  }
+  
+ 
+  #infomPags>p>a{
+    font-family: var(--font2);
+    font-size: 1em;
+    color: #2D4484;
+    font-weight: 400;
+    text-decoration: none;
+    max-width: 100%;
+  }
+
+  #quebra{
+    display: inline;
+  }
+
+  .redesSociais img{
+    width: 30px;
+    height: 30px;
+  }
+
+  /*DIREITOS*/
+  #direitos{
+    grid-column: 1 / span 3;
+    margin-bottom: 50px;
+  }
+  #direitos>p{
+    font-family: var(--font2);
+    font-size: 0.8em;
+    color: #2D4484;
+    font-weight: 400;
+    text-decoration: none;  
+  }
+}
+
+@media (max-width: 720px){
+  #cards{
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+
+@media (max-width: 640px){
+  #cards{
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 500px){
+
+    header {
+      padding: 20px 43px;
+      width: 100vw;
+      height: 150px;
+    }
+  
+    header>a>img {
+      width: 66px;
+      height: 65px;
+      margin-top: 20px;
+    }
+    
+    header>nav>ul {
+      padding: 40px 12px;
+      gap: auto;
+    }
+    
+    header>nav>ul>li>a {
+      text-decoration: none;
+      color: #375098;
+      font-family: var(--font1);
+      font-size: 0.75em;
+    }
+
+    /*main*/
+    main>h2{
+      font-size: 2em; 
+    }
+
+    /*Footer*/
+  footer{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 5px;
+    padding: 0 8px;
+  }
+  
+  #logoEDireitos{
+    padding: 50px 0px 25px 0px;
+    max-width: 33vw;
+    display: flex;
+    justify-content: center;
+  }
+
+  #logoEDireitos>p{
+    display: none;
+  }
+  
+  footer>div>img{
+    max-width: 90px;
+    max-height: 88px;
+    margin-bottom: 60px;
+    align-items: center;
+  }
+  
+  #contatos{
+    padding: 50px 0px 25px 0px;
+    text-align: center;
+    max-width: 33vw;
+  }
+  
+  #contatos>h2{
+    font-size: 1.125em;
+    max-width: auto;
+  }
+  
+  #contatos>p{
+    margin: 40px 0;
+    font-weight: 400;
+    max-width: 120px;
+  }
+  
+  #contatos>p>a{
+    font-size: 1em;
+    max-width: 50px;
+  }
+  
+  .redesSociais{
+    padding: 50px 0px 25px 0px;
+    display: flex;
+    gap: 16px;
+    justify-content: center;
+  }
+  
+  #infomPags{
+    padding: 50px 0px 25px 0px;
+    text-align: center;
+    max-width: 33vw;
+  }
+  
+  #infomPags>h2{
+    color: #2D4484;
+    font-family: var(--font2);
+    font-size: 1.125em;
+    font-weight: 700;
+  }
+  
+ 
+  #infomPags>p>a{
+    font-family: var(--font2);
+    font-size: 1em;
+    color: #2D4484;
+    font-weight: 400;
+    text-decoration: none;
+    max-width: 100%;
+  }
+
+  #quebra{
+    display: inline;
+  }
+
+  .redesSociais img{
+    width: 30px;
+    height: 30px;
+  }
+
+  /*DIREITOS*/
+  #direitos{
+    grid-column: 1 / span 3;
+    margin-bottom: 50px;
+  }
+
+  #direitos>p{
+    font-family: var(--font2);
+    font-size: 0.8em;
+    color: #2D4484;
+    font-weight: 400;
+    text-decoration: none;  
+  }
+}

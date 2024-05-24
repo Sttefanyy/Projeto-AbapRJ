@@ -1,0 +1,125 @@
+{% extends 'base.html' %}
+
+{% load crispy_forms_filters %}
+{% load crispy_forms_tags %}
+
+{% block page_title %}
+    Lista de Forms
+{% endblock page_title %}
+
+{% block content %}
+
+    {% if cadastroespelho.pk %}
+        <h1>
+            Editar de cadastro
+        </h1>
+        <style>
+            .mb-3:last-of-type {
+                display: none;
+            }
+        </style>
+
+        <form method="POST">
+            {% csrf_token %}
+
+            <h2>Formulário</h2>
+            {{ form|crispy }}
+
+            <h2>Membros Familiares</h2>
+            <div id="membrosFamiliares">
+                {{ membros_form.management_form }}
+                {% for form in membros_form %}
+                    <div class="membroFamiliar">
+                        {{ form|crispy }}
+                        <button type="button" class="removerMembro">Remover Membro da Família</button>
+                    </div>
+                {% endfor %}
+            </div>
+            <button type="button" id="adicionarMembro">Adicionar Membro da Família</button>
+            <button type="submit">Salvar</button>
+        </form>
+
+
+        <script>
+            document.addEventListener("DOMContentLoaded", function () {
+                var adicionarMembroBtn = document.getElementById("adicionarMembro");
+                var membrosFamiliaresDiv = document.getElementById("membrosFamiliares");
+                var totalForms = document.querySelector("#id_membros-TOTAL_FORMS");
+
+                adicionarMembroBtn.addEventListener("click", function () {
+                    var novoMembroDiv = document.createElement("div");
+                    novoMembroDiv.classList.add("membroFamiliar");
+
+                    var formRegex = RegExp(`membros-(\\d){1}-`, 'g'); // regex para encontrar o índice do formulário
+                    novoMembroDiv.innerHTML = document.querySelector(".membroFamiliar").innerHTML.replace(formRegex, `membros-${totalForms.value}-`);
+
+                    membrosFamiliaresDiv.appendChild(novoMembroDiv);
+
+                    totalForms.setAttribute('value', `${parseInt(totalForms.value) + 1}`);
+                });
+
+                document.addEventListener("click", function (event) {
+                    if (event.target.classList.contains("removerMembro")) {
+                        var membroDiv = event.target.closest(".membroFamiliar");
+                        membroDiv.remove();
+                        totalForms.setAttribute('value', `${parseInt(totalForms.value) - 1}`);
+                    }
+                });
+            });
+        </script>
+
+    {% else %}<h1>Novo cadastro </h1>
+
+
+        <form method="POST">
+            {% csrf_token %}
+
+            <h2>Formulário</h2>
+            {{ form|crispy }}
+
+            <h2>Membros Familiares</h2>
+            <div id="membrosFamiliares">
+                {{ membros_form.management_form }}
+                {% for form in membros_form %}
+                    <div class="membroFamiliar">
+                        {{ form|crispy }}
+                        <button type="button" class="removerMembro">Remover Membro da Família</button>
+                    </div>
+                {% endfor %}
+            </div>
+            <button type="button" id="adicionarMembro">Adicionar Membro da Família</button>
+            <button type="submit">Salvar</button>
+        </form>
+
+        <script>
+            document.addEventListener("DOMContentLoaded", function () {
+                var adicionarMembroBtn = document.getElementById("adicionarMembro");
+                var membrosFamiliaresDiv = document.getElementById("membrosFamiliares");
+                var totalForms = document.querySelector("#id_membros-TOTAL_FORMS");
+
+                adicionarMembroBtn.addEventListener("click", function () {
+                    var novoMembroDiv = document.createElement("div");
+                    novoMembroDiv.classList.add("membroFamiliar");
+
+                    var formRegex = RegExp(`membros-(\\d){1}-`, 'g'); // regex para encontrar o índice do formulário
+                    novoMembroDiv.innerHTML = document.querySelector(".membroFamiliar").innerHTML.replace(formRegex, `membros-${totalForms.value}-`);
+
+                    membrosFamiliaresDiv.appendChild(novoMembroDiv);
+
+                    totalForms.setAttribute('value', `${parseInt(totalForms.value) + 1}`);
+                });
+
+                document.addEventListener("click", function (event) {
+                    if (event.target.classList.contains("removerMembro")) {
+                        var membroDiv = event.target.closest(".membroFamiliar");
+                        membroDiv.remove();
+                        totalForms.setAttribute('value', `${parseInt(totalForms.value) - 1}`);
+                    }
+                });
+            });
+        </script>
+    {% endif %}
+
+
+
+{% endblock content %}

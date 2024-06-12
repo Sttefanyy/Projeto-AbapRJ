@@ -222,4 +222,8 @@ template, entre outros específicos, evitando a criação de novos campos para m
 
 Todas essas informações podem ser comprovadas pelo histórico de commits, que contém todos os 
 commits feitos até aqui e as respectivas pessoas que os fizeram.
-**Realizado por: João Pedro Guimarães Fernandes**
+
+Cada integrante detalhou suas contribuições e as colocou nesta documentação.
+
+**Documento convertido para Markdown por João Pedro Guimarães Fernandes**
+

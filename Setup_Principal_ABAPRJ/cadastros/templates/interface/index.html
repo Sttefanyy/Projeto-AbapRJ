@@ -1,0 +1,298 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>Site projeto</title>
+    <link href="{% static 'estilos/style.css' %}" rel="stylesheet" type="text/css"/>
+    <link rel="stylesheet" href="{% static 'estilos/slide.css' %}">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<style>
+    #enviar-botao {
+        background-color: blue; 
+        color: white; 
+        padding: 5px 10px; 
+        border: none; 
+        border-radius: 5px; 
+        cursor: pointer; 
+        font-size: 16px; 
+    }
+
+    #enviar-botao:hover {
+        background-color: darkblue; /* Cor de fundo azul escuro ao passar o mouse */
+    }
+</style>
+</head>
+
+<body>
+<!-- Menu inicial -->
+<header>
+    <a href="{% url 'homeAdmin' %}"><img src="{% static 'imagens/logo.svg' %}" alt="Logo ABAPRJ"></a>
+    <nav>
+        <ul>
+            <li><a href="{% url 'login' %}">LOGIN</a></li>
+            <li><a href="{% url 'candidato' %}">VOLUNTARIAR-SE</a></li>
+        </ul>
+    </nav>
+</header>
+<!-- Conteúdo principal -->
+<main>
+
+    <section class="slider">
+        <div class="slider-content">
+            <input type="radio" name="btn-radio" id="radio1">
+            <input type="radio" name="btn-radio" id="radio2">
+            <input type="radio" name="btn-radio" id="radio3">
+            <input type="radio" name="btn-radio" id="radio4">
+
+            <div class="slide-box primeiro">
+                <a href="#"><img class="img-desktop" src="{% static 'imagens/imagem3pc.jpg' %}" alt="imagem 1"></a>
+                <a href="#"><img class="img-mobile" src="{% static 'imagens/imagem3android.jpg' %}" alt="imagem 1"></a>
+            </div>
+
+            <div class="slide-box">
+                <a href="#"><img class="img-desktop" src="{% static 'imagens/imagem2pc.jpg' %}" alt="imagem 2"></a>
+                <a href="#"><img class="img-mobile" src="{% static 'imagens/imagem2android.jpg' %}" alt="imagem 2"></a>
+            </div>
+
+            <div class="slide-box">
+                <a href="#"><img class="img-desktop" src=" {% static 'imagens/imagem1pc.jpg' %}" alt="imagem 3"></a>
+                <a href="#"><img class="img-mobile" src="{% static 'imagens/imagem1android.jpg' %}" alt="imagem 3"></a>
+            </div>
+
+            <div class="slide-box">
+                <a href="#"><img class="img-desktop" src="{% static 'imagens/imagem4pc.jpg' %}" alt="imagem 4"></a>
+                <a href="#"><img class="img-mobile" src="{% static 'imagens/imagem4android.jpg' %}" alt="imagem 4"></a>
+            </div>
+
+            <div class="nav-auto">
+                <div class="auto-btn1"></div>
+                <div class="auto-btn2"></div>
+                <div class="auto-btn3"></div>
+                <div class="auto-btn4"></div>
+            </div>
+
+            <div class="nav-manual">
+                <label for="radio1" class="manual-btn"></label>
+                <label for="radio2" class="manual-btn"></label>
+                <label for="radio3" class="manual-btn"></label>
+                <label for="radio4" class="manual-btn"></label>
+            </div>
+
+        </div>
+    </section>
+
+    <section class="atalho1">
+        <div id="atalho2">
+            <a href="">
+                <img src="{% static 'imagens/apoieOProjeto1.svg' %}" alt="Icone de apoiar o projeto">
+                <p>Apoiar<br> o Projeto</p>
+            </a>
+        </div>
+        <div id="atalho3">
+            <a href="{% url 'apoie' %}">
+                <img src=" {% static 'imagens/acoesSociais1.svg' %}" alt="Icone de ações sociais">
+                <p>Ações<br> Sociais</p>
+            </a>
+        </div>
+        <div id="atalho4">
+            <a href="#apoie">
+                <img src="{% static 'imagens/FinancieAOng1.svg' %}" alt="Icone de financiar o ng">
+                <p>Financiar<br>ONG</p>
+            </a>
+        </div>
+    </section>
+
+    <section class="sobreOProjeto">
+        <h1>SOBRE O PROJETO</h1>
+        <div class="card">
+            <img src="{% static 'imagens/sobreOProjeto.jpg' %}"
+                 alt="Imagem dos participantes da ONG com as pessoas que estão sendo ajudadas">
+            <p>
+                A ABAP (Ação Beneficente Amor ao Próximo) é uma organização não governamental dedicada a promover a
+                melhoria da sociedade em várias frentes. Comprometida com o bem-estar coletivo, a ABRAP atua em diversas
+                áreas, desde a assistência social às comunidades carentes até a promoção da educação e dos recursos
+                básicos necessários para uma vida digna.
+                Por meio de programas estruturados, a ABRAP proporciona alimentação para famílias em situação de
+                vulnerabilidade, apoio educacional para crianças desfavorecidas, e organiza eventos esportivos que
+                incentivam hábitos saudáveis entre os jovens. Além disso, a organização também se dedica a projetos de
+                preservação ambiental, contribuindo para a sustentabilidade do planeta.
+                Com um foco inclusivo, a ABRAP atende pessoas de todas as idades, desde jovens em fase escolar até
+                idosos, visando sempre a melhoria da qualidade de vida da população. Por meio de sua atuação abrangente
+                e comprometida, a ABRAP tem sido uma força positiva na transformação social, ajudando a construir um
+                futuro mais justo e igualitário para todos.</p>
+        </div>
+
+        <button id="read_button"><p id="descritivo">Leia mais</p> <img src="{% static 'imagens/SetaParaBaixo.svg' %}"
+                                                                       alt="seta para baixo" id="iconeSeta"></button>
+    </section>
+
+    <section id="crianca">
+        <div class="imagemEsquerda">
+            <img id="imagemCriancaGrande" src="{% static 'imagens/menu01.jpg' %}" alt="Ação beneficiente com crianças">
+        </div>
+
+        <div class="conteudoTextualEsquerda">
+            <h2>CRIANÇAS</h2>
+            <p>
+                Nosso compromisso com as gerações futuras é absoluto. Buscamos incessantemente incentivá-las a construir
+                um futuro melhor, promovendo acesso equitativo à educação e oferecendo suporte às crianças mais
+                necessitadas.</p>
+            <div class="miniMenu">
+                <img id="imgCriancaPQ1" src="{% static 'imagens/menu01.jpg' %}" alt="" onclick="tracaImagem1()">
+                <img id="imgCriancaPQ2" src="{% static 'imagens/menu02.jpg' %}" alt="" onclick="tracaImagem2()"><br>
+                <img id="imgCriancaPQ3" src="{% static 'imagens/menu03.jpg' %}" alt="" onclick="tracaImagem3()">
+                <img id="imgCriancaPQ4" src="{% static 'imagens/menu04.jpg' %}" alt="" onclick="tracaImagem4()">
+            </div>
+
+        </div>
+    </section>
+
+    <section id="apoiador">
+        <div class="conteudoTextualDireita">
+            <h2>APOIADORES</h2>
+            <p>Se você é um empresario e tem interesse de contribuir com os projetos de nossa ONG, Entre em contato e
+                venha nos ajudar a transformar a nossa sociedade em um lugar melhor para todos.
+            </p>
+            <a href="mailto:contatoabaprj@gmail.com">
+                <button>ENVIAR EMAIL</button>
+            </a>
+        </div>
+
+        <div class="imagemDireita">
+            <img src="{% static 'imagens/apoiadoresEsse.jpg' %}" alt="Foto de apoiadores">
+        </div>
+
+    </section>
+
+    <section id="apoie">
+        <h2>APOIE O PROJETO</h2>
+        <p>O projeto impacta na vida de muitas pessoas em estado de carência so-
+            cial. As pessoas do nosso projetos se dispõem a ajuda-los porem
+            o projeto precisa de ajuda financeira para continuar beneficiando as
+            pessoas necessitadas. Contamos com sua solidariedade para nos apoiar
+            com qualquer valor disponível através dos meios disponíveis abaixo. (clique no icone do pix para copiar a chave pix do projeto)
+        </p>
+
+
+     <div>
+    <h1>Gerar Payload</h1>
+    <form id="payload-form">
+        <input type="text" id="valor" name="valor" placeholder="Digite o valor" required>
+        <button type="submit" id="enviar-botao">Enviar</button>
+    </form>
+    <div id="result"></div>
+
+        <br>
+
+
+
+
+            <script>
+        $(document).ready(function () {
+            $('#payload-form').on('submit', function (event) {
+                event.preventDefault();
+
+                // Limpa mensagens anteriores
+                $('#result').empty();
+                $('#qrcode').hide().attr('src', '');
+
+                var valor = $('#valor').val();
+                $.ajax({
+                    url: '/gerar-payload/',
+                    type: 'POST',
+                    data: {
+                        'valor': valor,
+                        'csrfmiddlewaretoken': '{{ csrf_token }}'
+                    },
+                    success: function (response) {
+                        $('#result').html(response.message);
+                        var timestamp = new Date().getTime();
+                        $('#qrcode').attr('src', response.qrcode_url + '?t=' + timestamp).show();
+                    },
+                    error: function (xhr, status, error) {
+                        $('#result').html('Ocorreu um erro ao gerar o payload. Tente novamente.');
+                    }
+                });
+            });
+        });
+    </script>
+
+        <input type="text" id="textoParaCopiar" value="chavepix" readonly style="position: absolute; left: -9999px;">
+    <a href="#" id="copiarPix">
+        <img src="{% static 'imagens/iconePix.svg' %}" alt="Icone do PIX">
+    </a>
+    <img id="qrcode" src="" alt="QR Code" style="display:none;">
+
+
+               <script>
+    document.getElementById("copiarPix").addEventListener("click", function(event) {
+        event.preventDefault();
+        var copyText = document.getElementById("textoParaCopiar");
+        copyText.select();
+        copyText.setSelectionRange(0, 99999); // Para dispositivos móveis
+        document.execCommand("copy");
+
+        alert("Chave PIX copiada: " + copyText.value);
+    });
+</script>
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    </section>
+
+</main>
+
+<footer>
+    <div id="logoEDireitos">
+        <img src="{% static 'imagens/logo.svg' %}" alt="Logo do projeto">
+        <p>ABAP © Todos os direitos reservados. </p>
+    </div>
+
+    <div id="contatos">
+        <h2>CONTATOS</h2>
+        <p><a href="">amoraoproximo.abap<br id="quebra">@gmail.com</a></p>
+        <p><a href="">(21) 96518-7755</a></p>
+        <p><a href="">(21) 97942-6577</a></p>
+        <p><a href="">(21) 99108-5187</a></p>
+        <div class="redesSociais">
+            <a href="https://www.facebook.com/abaprj?mibextid=ZbWKwL"><img src="{% static 'imagens/iconFacebook.svg' %}"
+                                                                           alt="icone do facebook"></a>
+            <a href="https://www.instagram.com/abaprj/"><img src="{% static 'imagens/inconInstagram.svg' %}"
+                                                             alt="icone do instagram"></a>
+        </div>
+    </div>
+
+    <div id="infomPags">
+        <h2>INFORMAÇÃO</h2>
+         <p><a href="#">Ações
+            Sociais</a><br></p>
+        <p><a href="{% url 'apoie' %}">Apoiar
+            o Projeto</a><br></p>
+       
+        <p><a>Apoie o Projeto</a><br></p>
+        <p><a>Financiar ONG</a><br></p>
+    </div>
+
+    <div id="direitos">
+        <p>ABAP © Todos os direitos reservados. </p>
+    </div>
+</footer>
+<script src="{% static 'js/script.js' %}"></script>
+</body>
+</html>

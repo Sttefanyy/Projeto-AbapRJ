@@ -1,0 +1,163 @@
+{% extends 'base.html' %}
+{% load crispy_forms_filters %}
+{% load crispy_forms_tags %}
+
+{% block page_title %}
+    Lista de Forms
+{% endblock page_title %}
+
+{% block content %}
+<style>
+.mb-3:last-of-type {
+    display: none;
+}
+</style>
+    {% if cadastro.pk %}
+        <h1>Editar cadastro</h1>
+        <form method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            <h2>Formulário</h2>
+            {{ form|crispy }}
+
+            <h2>Membros Familiares Existentes</h2>
+            <div id="membrosExistentes">
+                {{ membros_form.management_form }}
+                <h3>Não ativos</h3>
+                {% for form in membros_form.forms %}
+                    {% if form.instance.pk and "Ativo" not in form.instance.situacao_atual %}
+                        <div class="membroFamiliar" style="display: none;">
+                            {{ form|crispy }}
+                        </div>
+                    {% endif %}
+                {% endfor %}
+
+                <h3>Ativos</h3>
+                {% for form in membros_form.forms %}
+                    {% if form.instance.pk and "Ativo" in form.instance.situacao_atual %}
+                        <div class="membroFamiliar">
+                            {{ form|crispy }}
+                        </div>
+                    {% endif %}
+                {% endfor %}
+            </div>
+            <h2>Novos Membros Familiares</h2>
+            <div id="novosMembrosFamiliares"></div>
+
+            <button type="button" id="adicionarMembro">Adicionar Membro da Família</button>
+
+            <button type="submit" class="btnSalvar">Salvar dados</button>
+        
+         
+        </form>
+
+        <button type="button" id="mostrarNaoAtivos">Mostrar/ocultar membros não ativos</button>
+        
+
+        <!-- Template de formulário vazio para novos membros -->
+        <script type="text/template" id="empty-form-template">
+            <div class="membroFamiliar">
+                {{ membros_form.empty_form|crispy }}
+            </div>
+        </script>
+        <script>document.addEventListener("DOMContentLoaded", function () {
+            var adicionarMembroBtn = document.getElementById("adicionarMembro");
+            var membrosFamiliaresDiv = document.getElementById("novosMembrosFamiliares");
+            var emptyFormTemplate = document.getElementById("empty-form-template").innerHTML;
+            var totalForms = document.querySelector("#id_membros-TOTAL_FORMS");
+
+            adicionarMembroBtn.addEventListener("click", function () {
+                var newIndex = parseInt(totalForms.value);
+                var newFormHtml = emptyFormTemplate.replace(/__prefix__/g, newIndex);
+                membrosFamiliaresDiv.insertAdjacentHTML('beforeend', newFormHtml);
+                totalForms.value = newIndex + 1;
+            });
+
+            document.addEventListener("click", function (event) {
+                if (event.target.classList.contains("removerMembro")) {
+                    var membroDiv = event.target.closest(".membroFamiliar");
+                    membroDiv.remove();
+                    totalForms.value = parseInt(totalForms.value) - 1;
+                }
+            });
+
+            var mostrarNaoAtivosBtn = document.getElementById("mostrarNaoAtivos");
+            var membrosExistentesDiv = document.getElementById("membrosExistentes");
+
+            mostrarNaoAtivosBtn.addEventListener("click", function () {
+                var naoAtivos = membrosExistentesDiv.querySelectorAll('div[style*="display: none;"], div[style*="display: block;"]');
+                naoAtivos.forEach(function (membro) {
+                    if (membro.style.display === "none") {
+                        membro.style.display = "block";
+                    } else {
+                        membro.style.display = "none";
+                    }
+                });
+                // Atualiza o texto do botão conforme o estado
+                if (membrosVisiveis) {
+                    mostrarNaoAtivosBtn.textContent = "Mostrar membros não ativos";
+                } else {
+                    mostrarNaoAtivosBtn.textContent = "Ocultar membros não ativos";
+                }
+                membrosVisiveis = !membrosVisiveis;  // Alterna o estado
+            });
+        });
+        </script>
+    {% else %}<h1>Novo cadastro</h1>
+
+        <form method="POST">
+            {% csrf_token %}
+
+            <h2>Formulário</h2>
+            {{ form|crispy }}
+
+            <h2>Membros Familiares</h2>
+            <div id="membrosFamiliares">
+                {{ membros_form.management_form }}
+                {% for form in membros_form %}
+                    <div class="membroFamiliar">
+                        {{ form|crispy }}
+                        <button type="button" class="removerMembro">Remover Membro da Família</button>
+                    </div>
+                {% endfor %}
+            </div>
+
+            <button type="button" id="adicionarMembro">Adicionar Membro da Família</button>
+            <button type="submit" class="btnSalvar">Salvar dados</button>
+        
+        <br>
+        
+           <a href="{% url 'funcionario_listagem_crianca' %}" >
+    <button type="button"  id="adicionarMembro">Voltar</button>
+</a>
+        
+        </form>
+
+        <script>
+            document.addEventListener("DOMContentLoaded", function () {
+                var adicionarMembroBtn = document.getElementById("adicionarMembro");
+                var membrosFamiliaresDiv = document.getElementById("membrosFamiliares");
+                var totalForms = document.querySelector("#id_membros-TOTAL_FORMS");
+
+                adicionarMembroBtn.addEventListener("click", function () {
+                    var novoMembroDiv = document.createElement("div");
+                    novoMembroDiv.classList.add("membroFamiliar");
+
+                    var formRegex = RegExp(`membros-(\\d){1}-`, 'g'); // regex para encontrar o índice do formulário
+                    novoMembroDiv.innerHTML = document.querySelector(".membroFamiliar").innerHTML.replace(formRegex, `membros-${totalForms.value}-`);
+
+                    membrosFamiliaresDiv.appendChild(novoMembroDiv);
+
+                    totalForms.setAttribute('value', `${parseInt(totalForms.value) + 1}`);
+                });
+
+                document.addEventListener("click", function (event) {
+                    if (event.target.classList.contains("removerMembro")) {
+                        var membroDiv = event.target.closest(".membroFamiliar");
+                        membroDiv.remove();
+                        totalForms.setAttribute('value', `${parseInt(totalForms.value) - 1}`);
+                    }
+                });
+            });
+        </script>
+    {% endif %}
+{% endblock content %}

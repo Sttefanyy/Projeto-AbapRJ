@@ -1,0 +1,76 @@
+{% extends 'base.html' %}
+
+{% block page_title %}
+busca
+{% endblock page_title %}
+
+{% block content %}
+
+{% for cadastro in object_list %}
+    
+
+       <div class="dados_crianca">
+   
+       <h1>Detalhes do Cadastro</h1>
+         <hr/>
+        <div class="apenasp_crianca">
+         <p><strong>Nome: </strong> {{ cadastro.nome }}</p>
+        <p><strong>CPF: </strong> {{ cadastro.cpf }}</p>
+        <p><strong>RG: </strong> {{ cadastro.rg }}</p>
+        <p><strong>Data de Nascimento: </strong> {{ cadastro.data_nascimento }}</p>
+        <p><strong>Idade: </strong> {{ cadastro.idade }}</p>
+        <p><strong>Sexo: </strong> {{ cadastro.get_sexo_display  }}</p>
+        <p><strong>telefone : </strong> {{ cadastro.telefone  }}</p>
+        <p><strong>celular : </strong> {{ cadastro.C }}</p>
+        <p><strong>Escolaridade : </strong> {{ cadastro.escolaridade  }}</p>
+        <p><strong>Profissão: </strong> {{ cadastro.profissao }}</p>
+        <p><strong>Ocupacao Atual: </strong> {{ cadastro.ocupacao_atual }}</p>
+        <p><strong>Endereco: </strong> {{ cadastro.endereco }}</p>
+        <p><strong>Cidade: </strong> {{ cadastro.cidade }}</p>
+        <p><strong>Estado: </strong> {{ cadastro.estado }}</p>
+        <p><strong>Cep: </strong> {{ cadastro.cep }}</p>
+        <p><strong>Complemento: </strong> {{ cadastro.complemento}}</p>
+        <p><strong>DExp: </strong> {{ cadastro.DExp }}</p>
+        </div>
+          <div class="apenasp_crianca">
+        <p><strong>Estado Civil: </strong> {{ cadastro.estado_civil }}</p>
+        <p><strong>Renda: </strong> {{ cadastro.renda }}</p>
+        <p><strong>Beneficio Gov: </strong> {{ cadastro.beneficio_Gov }}</p>
+        <p><strong>Renda Gov: </strong> {{ cadastro.renda_gov }}</p>
+        <p><strong>Minha Moradia: </strong> {{ cadastro.minha_moradia }}
+        <p><strong>Minha Morada: </strong> {{ cadastro.minha_morada }}
+        <p><strong>Quantidade Comodos: </strong> {{ cadastro.quantidade_comodos }}</p>
+        <p><strong>Minha Morada: </strong> {{ cadastro.minha_morada }}</p>
+        <p><strong>Quartos: </strong> {{ cadastro.quartos }}</p>
+        <p><strong>Sala: </strong> {{ cadastro.sala }}</p>
+        <p><strong>Cozinha: </strong> {{ cadastro.cozinha }}</p>
+        <p><strong>Banheiro: </strong> {{ cadastro.banheiro }}</p>
+        <p><strong>Agua Encanada: </strong> {{ cadastro.agua_encanada }}</p>
+        <p><strong>Esgoto: </strong> {{ cadastro.esgoto }}</p>
+        <p><strong>Energia: </strong> {{ cadastro.energia }}</p>
+        <p><strong>Coleta Lixo: </strong> {{ cadastro.coleta_lixo }}</p>
+        </div>
+
+        <hr />
+
+        <h2>Membros da Família </h2>
+        <hr />
+        {% for membro in cadastro.membroFamilia.all %}
+             <div class="membros2">
+            <p><strong>Nome: </strong> {{ membro.nome }}</p>
+            <p><strong>Sexo: </strong> {{ membro.get_sexo_display }}</p>
+            <p><strong>Telefone: </strong> {{ membro.telefone }}</p>
+            <p><strong>Celular: </strong> {{ membro.celular }}</p>
+            <p><strong>Data De Nascimento: </strong> {{ membro.data_nascimento }}</p>
+            <p><strong>Estado Civil: </strong> {{ membro.estado_civil }}</p>
+            <p><strong>Vinculo Familia: </strong> {{ membro.vinculo_familia }}</p>
+            <p><strong>Escolaridade: </strong> {{ membro.escolaridade }}</p>
+            <p><strong>Situacao Atual: </strong> {{ membro.situacao_atual}}</p>
+             </div>
+            {% endfor %}
+      </div>
+     <button class="btnvoltar"><a href="{% url 'funcionario_listagem_crianca' %}">Voltar</a></button>
+     
+{% endfor %}
+
+{% endblock content %}

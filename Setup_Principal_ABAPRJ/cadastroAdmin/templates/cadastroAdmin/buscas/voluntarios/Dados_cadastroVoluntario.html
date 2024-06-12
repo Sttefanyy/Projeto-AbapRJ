@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% block page_title %}
+busca
+{% endblock page_title %}
+
+{% block content %}
+
+{% for voluntario in object_list %}
+
+    <div class="centalizarDetalhes">
+
+      <div class="dadosVolunt_cand">
+
+        <h1 class="titulo">Detalhes do Voluntário</h1>
+        <hr />
+        <div class="apenasp">
+
+        <p><strong> Nome: </strong>{{ voluntario.nome }}</p>
+        <p><strong> E-mail: </strong>{{ voluntario.email }}</p>
+        <p><strong> Telefone: </strong>{{ voluntario.telefone }}</p>
+        <p><strong> CPF: </strong>{{ voluntario.cpf }}</p>
+        <p><strong> Descrição: </strong>{{ voluntario.descricao }}</p>
+        <p><strong> Situação: </strong>{{ voluntario.situacao }}</p>
+       </div>
+       </div>
+    </div>
+{% endfor %}
+
+    <button class="btnvoltar"><a href="{% url 'adimin_listagem_funcionario' %}">Voltar</a></button>
+
+{% endblock content %}

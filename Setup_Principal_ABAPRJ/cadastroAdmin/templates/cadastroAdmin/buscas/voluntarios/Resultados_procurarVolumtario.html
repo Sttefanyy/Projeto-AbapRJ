@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Resultado da Pesquisa</title>
+</head>
+
+<body>
+
+
+<div id="tabelaRep" class="resultado-item">
+    <tbody>
+     <tr>
+                            <th scope="row"><a href="{% url 'dadosVoluntarios' voluntario.pk %}">  {{ voluntario.pk }} </a></th>
+                            <th scope="row"><a href="{% url 'dadosVoluntarios' voluntario.pk %}"> {{ voluntario.nome }}</a></th>
+                            <th scope="row">{{ voluntario.cpf }}</th>
+                            <th scope="row">{{ voluntario.telefone }}</th>
+                            <th scope="row"> {{ voluntario.situacao }}</th>
+                            <td>
+
+
+<a href="{% url 'adimin_func_atualizar' pk=voluntario.pk %}" class="btn btn-secondary btn-sm">
+                                    <img style="display: inline-block; width: 15px; height: 15px" src="{% static 'imagens/check.svg' %}" alt="confirmar"> Editar </a>
+
+
+                              <a href="{% url 'adimin_candidato_deletar' pk=voluntario.pk %}" class="btn btn-danger btn-sm"><img style="display: inline-block; width: 15px; height: 15px;" src="{% static 'imagens/delete.svg' %}" alt="excluir"> Excluír</a>
+                            </td>
+                        </tr>
+    </tbody>
+</div>
+
+</body>
+</html>
+
+
+
+

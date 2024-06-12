@@ -1,0 +1,91 @@
+@charset "utf-8";
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
+
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+
+:root {
+  --cor0: #ffffff;
+  --cor1: #2196F3;
+  --cor2: #f26430;
+  --cor3: #11457E;
+  --cor4: #040C17;
+
+  /Fontes/
+  --font1: "Roboto", sans-serif;
+  --font2: 'Inter', Arial, Helvetica, sans-serif;
+}
+
+* {
+  margin: 0px;
+  padding: 0px;
+  box-sizing: border-box;
+}
+
+#tabelaRep{
+    overflow-x: auto;
+}
+
+.search-container .container{
+    display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+}
+
+#tabelaRep{
+    margin-top: 10px;
+}
+
+main>h2{
+    margin: 80px 0;
+}
+.removerMembro{
+    color: #f8f8f8;
+    background-color: indianred;
+    margin-bottom: 20px;
+    border-radius: 20px;
+    border-color: indianred;
+    width: 20%;
+}
+#adicionarMembro{
+    color: #f8f8f8;
+    background-color: #2196F3;
+    border-radius: 20px;
+    border-color: #2196F3;
+    width: 20%;
+}
+.btnSalvar {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    align-items: center;
+    color: #f8f8f8;
+    background-color: green;
+    margin-top: 20px;
+    border-radius: 20px;
+    border-color: green;
+    width: 20%;
+}
+#mostrarNaoAtivos{
+    color: black;
+    border-radius: 300px 300px 300px 300px;
+    background-image: linear-gradient(to bottom, #93B4FF, #D5E2FF);
+    border-color: #93B4FF;
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    width: 85px;
+    height: 90px;
+}
+@media (max-width: 1060px){
+    main>h2{
+      font-size: 3em;
+    }
+}
+
+@media (max-width: 500px){
+ main>h2{
+      font-size: 2em;
+    }
+}

@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{% block page_title %}
+busca
+{% endblock page_title %}
+
+{% block content %}
+
+{% for admin in object_list %}
+
+    <div class="centalizarDetalhes">
+
+      <div class="dadosVolunt">
+
+        <h2 class="titulo">Detalhes do Administrador</h2>
+        <hr />
+        <div class="apenasp">
+
+        <p><strong>Nome: </strong>{{ admin.nome }}</p>
+        <p><strong>E-mail: </strong>{{ admin.email }}</p>
+        <p><strong>Telefone: </strong>{{ admin.telefone }}</p>
+        <p><strong>CPF: </strong>{{ admin.cpf }}</p>
+        <p><strong>Situação: </strong>{{ admin.situacao_atual }}</p>
+       </div>
+       </div>
+    </div>
+{% endfor %}
+
+    <button class="btnvoltar"><a href="{% url 'adimin_listagem' %}">Voltar</a></button>
+
+{% endblock content %}
+
+
+
+
+

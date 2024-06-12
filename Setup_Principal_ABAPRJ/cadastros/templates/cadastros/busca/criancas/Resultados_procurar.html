@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Resultado da Pesquisa</title>
+</head>
+<body>
+
+
+<div id="tabelaRep" class="resultado-item">
+    <tbody>
+    <tr>
+         <th scope="row"><a href="{% url 'dados' cadastro.pk %}">  {{ cadastro.pk }} </a></th>
+         <th scope="row"><a href="{% url 'dados' cadastro.id %}"> {{ cadastro.nome }}</a></th>
+         <th scope="row">{{ cadastro.cpf }}</th>
+         <th scope="row">{{ cadastro.telefone }}</th>
+         <th scope="row">{{ cadastro.cidade }}</th>
+         <th scope="row">{{ cadastro.finished_at }}</th>
+
+        <td>
+                            
+        
+        
+        <a href="{% url 'funcionario_cadastro_atualizar' pk=cadastro.pk %}"
+                               class="btn btn-secondary btn-sm {% if todo.finished_at %}disabled{% endif %}">
+                               <img style="display: inline-block; width: 15px; height: 15px" src="{% static 'imagens/pen 1.svg' %}" alt="Icone de lupa">  Editar
+
+                            </a>
+                        </td>
+    </tr>
+    </tbody>
+</div>
+
+</body>
+</html>
+
+
+
+

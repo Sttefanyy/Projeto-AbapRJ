@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<div id="tabelaRep" class="resultado-item">
+    <tbody>
+    <tr>
+         <th scope="row"><a href="{% url 'dadosAdmin' admin.pk %}">  {{ admin.pk }} </a></th>
+         <th scope="row"><a href="{% url 'dadosAdmin' admin.id %}"> {{ admin.nome }}</a></th>
+         <th scope="row">{{ admin.cpf }}</th>
+         <th scope="row">{{ admin.telefone }}</th>
+
+
+        <td>
+
+                          <a href="{% url 'adimin_atualizar' pk=admin.pk %}"
+                               class="btn btn-secondary btn-sm">
+                                <img style="display: inline-block; width: 15px; height: 15px" src="{% static 'imagens/pen 1.svg' %}" alt="editar"> Editar
+                            </a>
+
+
+
+                            <a href="{% url 'adimin_deletar' pk=admin.pk %}" class="btn btn-danger btn-sm"><img style="display: inline-block; width: 15px; height: 15px;" src="{% static 'imagens/delete.svg' %}" alt="excluir"> Excluír</a>
+
+                        </td>
+    </tr>
+    </tbody>
+</div>
+
+</body>
+</html>

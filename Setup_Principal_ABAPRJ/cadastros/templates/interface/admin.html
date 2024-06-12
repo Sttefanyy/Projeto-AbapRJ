@@ -1,0 +1,188 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ADMINISTRAÇÂO</title>
+    <link rel="stylesheet" href="{% static 'estilos/admin.css' %}">
+
+     <style>
+         .pagination {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .page-link {
+        color: white !important;
+        background-color: #0a58ca;
+        border: 1px solid rgba(64, 94, 178, 0.35);
+        padding: 5px 10px;
+        margin: 2px;
+        border-radius: 4px;
+        text-decoration: none;
+        display: inline-block;
+    }
+
+    .page-link:hover {
+        background-color: rgba(64, 94, 178, 0.7);
+    }
+
+    .current-page {
+        color: #375098;
+        font-weight: bold;
+        background-color: rgba(64, 94, 178, 0.35);
+        padding: 5px 10px;
+        border: 1px solid rgba(64, 94, 178, 0.35);
+        margin: 2px;
+        border-radius: 4px;
+        display: inline-block;
+    }
+
+    @media (max-width: 768px) {
+        .page-link, .current-page {
+            flex: 1 0 45%;
+            text-align: center;
+            margin: 5px 0;
+        }
+
+        .pagination {
+            gap: 5px;
+        }
+    }
+
+    @media (max-width: 480px) {
+        .page-link, .current-page {
+            flex: 1 0 100%;
+            padding: 5px;
+            font-size: 12px;
+            margin: 3px 0;
+        }
+    }
+    </style>
+</head>
+<body>
+<!-- Menu inicial -->
+<header>
+    <a href="{% url 'home' %}"><img src=" {% static 'imagens/logo.svg' %}" alt="Logo ABAPRJ"></a>
+    <nav>
+        <ul>
+            <li><a href="{% url 'home' %}">SAIR</a></li>
+        </ul>
+    </nav>
+</header>
+
+
+<main>
+    <h2>CAMPOS DE CADASTRO E LISTAGEM</h2>
+    <section id="cards">
+        <div class="card">
+            <h2>LISTAGEM<br>CRIANÇAS</h2>
+            <img src="{% static 'imagens/children.png' %}" alt="Icone de crianças">
+            <a href="{% url 'adimin_listagem_crianca' %}">
+                <button>VERIFICAR</button>
+            </a>
+        </div>
+        <div class="card">
+            <h2>REGISTRAR<br>ADMINISTRAÇÃO</h2>
+            <img src="{% static 'imagens/gerente.png' %}" alt="Icone de crianças">
+            <a href="{% url 'cadastrar_adimin' %}">
+                <button>CADASTRAR</button>
+            </a>
+        </div>
+        <div class="card">
+            <h2>LISTAGEM<br>FUNCIONARIO</h2>
+            <img src="{% static 'imagens/employees.png' %}" alt="Icone de crianças">
+            <a href="{% url 'adimin_listagem_funcionario' %}">
+                <button>VERIFICAR</button>
+            </a>
+        </div>
+    </section>
+
+    <section id="registro">
+        <h2>ADMINISTRADORES CADASTRADOS</h2>
+
+        <h3>Nossa Adiministração</h3>
+        {% for voluntario in funcionarios %}
+            <div>
+                <li style="padding: 5px; font-size: larger"><strong>{{ voluntario.nome }}</strong>
+                    {% if voluntario.situacao_atual  not in "Adm" %}
+                        👑
+                    {% endif %}</li>
+                <br>
+            </div>
+
+        {% endfor %}
+
+        <div id="pass_pag" class="pagination justify-content-center">
+    {% if page_obj.has_previous %}
+        {% if request.GET.nome %}
+            <a class="page-link" href="?page=1&nome={{ request.GET.nome }}">&laquo; Primeira</a>
+            <a class="page-link" href="?page={{ page_obj.previous_page_number }}&nome={{ request.GET.nome }}">Anterior</a>
+        {% else %}
+            <a class="page-link" href="?page=1">&laquo; Primeira</a>
+            <a class="page-link" href="?page={{ page_obj.previous_page_number }}">Anterior</a>
+        {% endif %}
+    {% endif %}
+
+    <span class="current-page">
+        Página {{ page_obj.number }} de {{ page_obj.paginator.num_pages }}.
+    </span>
+
+    {% if page_obj.has_next %}
+        {% if request.GET.nome %}
+            <a class="page-link" href="?page={{ page_obj.next_page_number }}&nome={{ request.GET.nome }}">Próxima</a>
+            <a class="page-link" href="?page={{ page_obj.paginator.num_pages }}&nome={{ request.GET.nome }}">Última &raquo;</a>
+        {% else %}
+            <a class="page-link" href="?page={{ page_obj.next_page_number }}">Próxima</a>
+            <a class="page-link" href="?page={{ page_obj.paginator.num_pages }}">Última &raquo;</a>
+        {% endif %}
+    {% endif %}
+</div>
+
+    </section>
+
+    <h2>Senha Gerente:</h2>
+    <form action="{% url 'senha' %}" method="POST">
+        {% csrf_token %}
+        <label for="senha">Senha:</label> <br>
+        <input type="password" id="senha" name="senha" placeholder="insira o código">
+        <button type="submit">Enviar</button>
+    </form>
+</main>
+
+<footer>
+    <div id="logoEDireitos">
+        <img src="{% static 'imagens/logo.svg' %}" alt="Logo do projeto">
+        <p>ABAP © Todos os direitos reservados. </p>
+    </div>
+
+    <div id="contatos">
+        <h2>CONTATOS</h2>
+        <p><a href="">amoraoproximo.abap<br id="quebra">@gmail.com</a></p>
+        <p><a href="">+55 (21) 99108-5187</a></p>
+        <div class="redesSociais">
+            <a href="https://www.facebook.com/abaprj?mibextid=ZbWKwL"><img src="{% static 'imagens/iconFacebook.svg' %}"
+                                                                           alt="icone do facebook"></a>
+            <a href="https://www.instagram.com/abaprj/"><img src="{% static 'imagens/inconInstagram.svg' %}"
+                                                             alt="icone do instagram"></a>
+        </div>
+    </div>
+
+    <div id="infomPags">
+        <h2>INFORMAÇÃO</h2>
+        <p><a href="">Crianças</a><br></p>
+        <p><a href="">Formulário</a><br></p>
+        <p><a href="">Vagas</a><br></p>
+        <p><a href="">Apoiadores</a><br></p>
+    </div>
+
+    <div id="direitos">
+        <p>ABAP © Todos os direitos reservados. </p>
+    </div>
+</footer>
+
+</body>
+</html>

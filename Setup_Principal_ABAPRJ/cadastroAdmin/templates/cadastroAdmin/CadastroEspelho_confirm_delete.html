@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block page_title %}
+    Excluír Tarefa
+{% endblock page_title %}
+
+{% block content %}
+    <h1>Excluir Tarefa?</h1>
+    <p>Tem certeza que deseja excluir <strong>{{ cadastroespelho.nome }}</strong>?</p>
+
+    <form method="POST">
+        {% csrf_token %}
+
+        <button type="submit" class="btn btn-danger">Excluir</button>
+        <a href="{% url 'adimin_listagem_crianca' %}" class="btn btn-primary">Cancelar</a>
+    </form>
+{% endblock content %}

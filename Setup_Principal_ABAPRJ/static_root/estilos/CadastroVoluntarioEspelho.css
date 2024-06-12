@@ -1,0 +1,16 @@
+.tabelaResp{
+    overflow-x: auto;
+
+}
+
+table{
+    margin-top: 0px;
+}
+
+th, td{
+    border: 1px solid black;
+}
+
+tbody>tr:nth-child(2n){
+    background-color: rgba(147, 180, 255, 0.48);
+}

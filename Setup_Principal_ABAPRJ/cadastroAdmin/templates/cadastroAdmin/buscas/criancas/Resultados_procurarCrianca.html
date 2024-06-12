@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Resultado da Pesquisa</title>
+</head>
+
+<body>
+
+
+<div id="tabelaRep" class="resultado-item">
+    <tbody>
+    <tr>
+         <th scope="row"><a href="{% url 'dadosCrianca' cadastro.pk %}">  {{ cadastro.pk }} </a></th>
+         <th scope="row"><a href="{% url 'dadosCrianca' cadastro.id %}"> {{ cadastro.nome }}</a></th>
+         <th scope="row">{{ cadastro.cpf }}</th>
+         <th scope="row">{{ cadastro.telefone }}</th>
+         <th scope="row">{{ cadastro.cidade }}</th>
+         <th scope="row">{{ cadastro.finished_at }}</th>
+
+        <td>
+
+
+                        <a href="{% url 'cad_complete' pk=cadastro.pk %}"
+                               class="btn btn-primary btn-sm {% if todo.finished_at %}disabled{% endif %}">
+                               <img style="display: inline-block; width: 15px; height: 15px" src="{% static 'imagens/check.svg' %}" alt="Icone de lupa"> Concluir
+                            </a>
+
+
+                             <a href="{% url 'adimin_cadastro_atualizar' pk=cadastro.pk %}"
+                               class="btn btn-secondary btn-sm">
+                               <img style="display: inline-block; width: 15px; height: 15px" src="{% static 'imagens/pen 1.svg' %}" alt="Icone de lupa">  Editar
+
+                            </a>
+
+                            <a href="{% url 'adimin_cadastro_deletar' pk=cadastro.pk %}" class="btn btn-danger btn-sm"><img style="display: inline-block; width: 15px; height: 15px;" src="{% static 'imagens/delete.svg' %}" alt="Icone de lupa"> Excluír</a>
+
+                        </td>
+    </tr>
+    </tbody>
+</div>
+
+</body>
+</html>
+
+
+

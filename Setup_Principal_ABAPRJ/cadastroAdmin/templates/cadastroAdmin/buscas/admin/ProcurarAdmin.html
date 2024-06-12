@@ -1,0 +1,82 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block page_title %}
+{% endblock page_title %}
+
+{% block content %}
+
+    <div class="search-container">
+        <div class="container">
+            <form action="{% url 'procurarAdmin' %}" method="GET" class="procurar-form">
+                <label>
+                    <input style="border-radius: 30px 0 0 30px; padding: 2px 0; padding-left: 10px" type="search"
+                           class="procurar-input"
+                           name="q" value=
+                                   "{{ procurar_termo }}"
+                           required>
+                </label>
+                <button style="background-color: #3F5CB0; color: white; margin: 0 0 5px -10px; border-radius: 0 10px
+                10px 0;"
+                        type="submit"
+                        id="cor_btn"
+                        class="btn
+                btn-sm"
+                        class="procurar-button"><i
+                        class="fas
+                fa-search"></i><img style="height: 20px; width: 20px" src="{% static 'imagens/lupa.svg' %}" alt="Icone
+                 de
+                lupa"></button>
+            </form>
+        </div>
+    </div>
+
+
+
+
+
+
+    <div class="main-content main-content-list container">
+
+     {% if total_resultados > 0 %}
+    <div class="results-count">
+        <h2>Total de resultados: {{ total_resultados }}</h2>
+    </div>
+     {% endif %}
+
+<div class="main-content main-content-list container">
+
+<div id="tabelaRep">
+<table class="table">
+
+  {% if total_resultados > 0 %}
+                <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Nome</th>
+                    <th scope="col">Cpf</th>
+                    <th scope="col">Telefone</th>
+                    <th scope="col">Ações</th>
+                </tr>
+                </thead>
+ {% endif %}
+
+{% for admin in object_list %}
+
+    {% include 'cadastroAdmin/buscas/admin/Resultados_procurarAdmin.html' %}
+{% empty %}
+    <div class="center m-y">
+        <h1>Sem registros</h1>
+    </div>
+{% endfor %}
+
+
+</table>
+</div>
+
+
+
+</div>
+<button class="btnvoltar"><a href="{% url 'adimin_listagem' %}">Voltar</a></button>
+{% endblock content %}
+
+

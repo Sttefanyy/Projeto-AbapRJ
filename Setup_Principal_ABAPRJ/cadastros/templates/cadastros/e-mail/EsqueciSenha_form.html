@@ -1,148 +1,24 @@
 {% extends 'base.html' %}
+{% load crispy_forms_filters %}
+{% load crispy_forms_tags %}
 {% load static %}
-{% block page_title %}
-    Listagem de funcionário
-{% endblock page_title %}
 
 {% block content %}
-
-
-    <h1>Lista de Voluntários</h1>
-
-    <div class="search-container">
-        <div class="container">
-            <form action="{% url 'procurarVoluntarios' %}" method="GET" class="procurar-form">
-                <label>
-                    <input style="border-radius: 30px 0 0 30px; padding: 2px 0; padding-left: 10px" type="search"
-                           class="procurar-input"
-                           type="search" class="procurar-input" name="q" value="{{ procurar_termo }}" required>
-                </label>
-                <button style=" background-color: #3F5CB0; color: white; margin: 0 0 5px -10px; border-radius: 0 10px
-                10px 0; padding-bottom: 5px;" class="btn btn-sm" type="submit"
-                        class="procurar-button"><i
-                        class="fas fa-search"></i><img style="height: 20px; width: 20px"
-                                                       src="{% static 'imagens/lupa.svg' %}" alt="Icone
-                 de
-                lupa">
-                </button>
-            </form>
-        </div>
-    </div>
-
-    <br><br>
-
-    {% if cadastrovoluntario_list %}
-        <div class="tabelaResp">
-            <h2>Voluntários:</h2>
-            <table class="table">
-                <thead>
-                <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">Nome</th>
-                    <th scope="col">Cpf</th>
-                    <th scope="col">Telefone</th>
-                    <th scope="col">Finalizado em</th>
-                    <th scope="col">Ações</th>
-                </tr>
-
-                </thead>
-
-                <tbody>
-                {% for todo in object_list %}
-                    {% if  todo.situacao == 'Funcionario' %}
-                        <tr>
-                            <th scope="row"><a href="{% url 'dadosVoluntarios' todo.pk %}">  {{ todo.pk }} </a></th>
-                            <th scope="row"><a href="{% url 'dadosVoluntarios' todo.pk %}"> {{ todo.nome }}</a></th>
-                            <th scope="row">{{ todo.cpf }}</th>
-                            <th scope="row">{{ todo.telefone }}</th>
-                            <th scope="row"> {{ todo.situacao }}</th>
-                            <td>
-                                <a href="{% url 'adimin_func_atualizar' pk=todo.pk %}" class="btn btn-secondary btn-sm">
-                                    Editar </a>
-                                <a href="{% url 'func_complete' pk=todo.pk %}"
-                                   class="btn btn-primary btn-sm } {% if todo.situacao not in 'Candidato' %}disabled{% endif %}">
-                                    Validar</a>
-
-                                <a href="{% url 'adimin_candidato_deletar' pk=todo.pk %}" class="btn btn-danger btn-sm">Excluír</a>
-                            </td>
-                        </tr>
-                    {% endif %}
-                {% endfor %}
-                </tbody>
-            </table>
-        </div>
+    <h2>Esqueci Minha Senha</h2>
+    <form method="POST">
+        {% csrf_token %}
+        {{ form|crispy }}
+        <br><br>
+        <button type="submit" class="btn btn-primary">Enviar e-mail</button>
+    </form>
+    {% if messages %}
+    <ul>
+        {% for message in messages %}
+            <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+        {% endfor %}
+    </ul>
     {% endif %}
- <br><br>
-    {% if cadastrovoluntario_list %}
-        <div class="tabelaResp">
-         <h2>Candidatos:</h2>
-            <table class="table">
-                <thead>
-                <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">Nome</th>
-                    <th scope="col">Cpf</th>
-                    <th scope="col">Telefone</th>
-                    <th scope="col">Finalizado em</th>
-                    <th scope="col">Ações</th>
-                </tr>
-
-                </thead>
-
-                <tbody>
-                {% for todo in object_list %}
-                    {% if  todo.situacao == 'Candidato' %}
-                        <tr>
-                            <th scope="row"><a href="{% url 'dadosVoluntarios' todo.pk %}">  {{ todo.pk }} </a></th>
-                            <th scope="row"><a href="{% url 'dadosVoluntarios' todo.pk %}"> {{ todo.nome }}</a></th>
-                            <th scope="row">{{ todo.cpf }}</th>
-                            <th scope="row">{{ todo.telefone }}</th>
-                            <th scope="row"> {{ todo.situacao }}</th>
-
-                            <td>
-                                <a href="{% url 'func_complete' pk=todo.pk %}"
-                                   class="btn btn-primary btn-sm } {% if todo.situacao not in 'Candidato' %}disabled{% endif %}">
-                                    Validar</a>
-
-
-                                <a href="{% url 'adimin_candidato_deletar' pk=todo.pk %}" class="btn btn-danger btn-sm">Excluír</a>
-                            </td>
-                        </tr>
-                    {% endif %}
-                {% endfor %}
-                </tbody>
-            </table>
-        </div>
-    {% endif %}
-
-
-    <div class="pagination justify-content-center">
-    {% if page_obj.has_previous %}
-        {% if request.GET.nome %}
-            <a class="page-link" href="?page=1&nome={{ request.GET.nome }}">&laquo; Primeira</a>
-            <a class="page-link" href="?page={{ page_obj.previous_page_number }}&nome={{ request.GET.nome }}">Anterior</a>
-        {% else %}
-            <a class="page-link" href="?page=1">&laquo; Primeira</a>
-            <a class="page-link" href="?page={{ page_obj.previous_page_number }}">Anterior</a>
-        {% endif %}
-    {% endif %}
-
-    <span class="page-link">Página {{ page_obj.number }} de {{ page_obj.paginator.num_pages }}.</span>
-
-    {% if page_obj.has_next %}
-        {% if request.GET.nome %}
-            <a class="page-link" href="?page={{ page_obj.next_page_number }}&nome={{ request.GET.nome }}">Próxima</a>
-            <a class="page-link" href="?page={{ page_obj.paginator.num_pages }}&nome={{ request.GET.nome }}">Última &raquo;</a>
-        {% else %}
-            <a class="page-link" href="?page={{ page_obj.next_page_number }}">Próxima</a>
-            <a class="page-link" href="?page={{ page_obj.paginator.num_pages }}">Última &raquo;</a>
-        {% endif %}
-    {% endif %}
-</div>
-
-
-
-    <a href="{% url 'homeAdmin' %}" class="btn btn-danger btn-sm">VOLTAR</a>
-
-
-{% endblock content %}
+    <br>
+    <a class="btn-link1" href="{% url 'login' %}">Voltar</a>
+    
+{% endblock %}
